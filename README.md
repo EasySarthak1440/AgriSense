@@ -1,4 +1,4 @@
-<<<<<<< HEAD
+
 # AgriSense
 crop prediction, fertilizer recommendation and disease detection
 =======
@@ -40,9 +40,8 @@ crop prediction, fertilizer recommendation and disease detection
 </details>
 
 ## License 📝
-This project is licensed under [GNU (GENERAL PUBLIC LICENSE)](https://github.com/Gladiator07/Harvestify/blob/master/LICENSE).
+This project is licensed under [GNU (GENERAL PUBLIC LICENSE)]https://github.com/EasySarthak1440/AgriSense/blob/main/LICENSE.
 
 ## Contact 📞
 
-#### If you have any doubt or want to contribute feel free to email me or hit me up on [LinkedIn](https://www.linkedin.com/in/atharva-ingle-564430187/)
->>>>>>> master
+#### If you have any doubt or want to contribute feel free to email me or hit me up on [LinkedIn](https://www.linkedin.com/in/sarthak-kelkar-a9a796204/)
