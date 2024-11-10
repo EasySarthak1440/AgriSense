@@ -83,10 +83,10 @@ crop prediction, fertilizer recommendation and disease detection
 -'muskmelon'
 -'orange'
 -'papaya'
+-
 -'pomegranate'
 -'watermelon'
-
-
+-
 </details>
 
 <details>1842 Crops For Fertilizer Detection
