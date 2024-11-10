@@ -54,7 +54,7 @@ crop prediction, fertilizer recommendation and disease detection
 <details>
   <summary>Supported crops
 </summary>
-Supported Crops
+  
 This application supports the following crops for analysis:
 
 Cereal Crops:
