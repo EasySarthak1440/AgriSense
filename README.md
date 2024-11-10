@@ -17,6 +17,9 @@ crop prediction, fertilizer recommendation and disease detection
 - [Fertilizer suggestion dataset](https://github.com/Gladiator07/Harvestify/blob/master/Data-processed/fertilizer.csv) (custom built dataset)
 - [Disease detection dataset](https://www.kaggle.com/vipoooool/new-plant-diseases-dataset)
 
+## Website Demo 
+![Screenshot (104)](https://github.com/user-attachments/assets/4438575e-ef4b-4bb8-8f5a-73606424d23e)
+
 
 <details>
   <summary>Supported crops
