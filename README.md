@@ -56,7 +56,9 @@ crop prediction, fertilizer recommendation and disease detection
 </summary>
 
 -'rice'
+
 -'wheat'
+
 -'mungbean'
 -'tea'
 -'millet'
