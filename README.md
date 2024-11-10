@@ -57,48 +57,37 @@ crop prediction, fertilizer recommendation and disease detection
   
 This application supports the following crops for analysis:
 
-Cereal Crops:
+- Rice
+- Wheat
+- Millet
+- Maize
 
-Rice
-Wheat
-Millet
-Maize
-Legumes:
-
-Mungbean
-Lentil
-Peas
-Kidney Beans
-Moth Beans
-Black Gram
-Adzuki Beans
-Pigeon Peas
-Chickpea
-Cash Crops:
-
-Cotton
-Jute
-Sugarcane
-Groundnut
-Rubber
-Fruits:
-
-Banana
-Grapes
-Apple
-Mango
-Muskmelon
-Orange
-Papaya
-Pomegranate
-Watermelon
-Beverage Crops:
-
-Tea
-Coffee
-Others:
-
-Coconut
+- Mungbean
+- Lentil
+- Peas
+- Kidney Beans
+- Moth Beans
+- Black Gram
+- Adzuki Beans
+- Pigeon Peas
+- Chickpea
+- Cotton
+- Jute
+- Sugarcane
+- Groundnut
+- Rubber
+- Banana
+- Grapes
+- Apple
+- Mango
+- Muskmelon
+- Orange
+- Papaya
+- Pomegranate
+- Watermelon
+- Tea
+- Coffee
+- Coconut
 </details>
 
 <details>1842 Crops For Fertilizer Detection
