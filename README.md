@@ -21,11 +21,18 @@ crop prediction, fertilizer recommendation and disease detection
 ![Screenshot (104)](https://github.com/user-attachments/assets/8eedcbca-2068-4d53-9591-84c6b34cafbc)
 ![Screenshot (94)](https://github.com/user-attachments/assets/aa6f3298-a18c-4507-b684-dfd3dc6fea20)
 ![Screenshot (95)](https://github.com/user-attachments/assets/c86cbefc-9eaf-4e16-acf3-632b6554cc25)
-
+![Screenshot (96)](https://github.com/user-attachments/assets/7baa3bdc-4b48-4e8c-aff6-2318e04200db)
+![Screenshot (97)](https://github.com/user-attachments/assets/26d3921d-0970-4d1b-90d5-7721e15aee21)
+![Screenshot (98)](https://github.com/user-attachments/assets/88cae7bc-f251-4f97-92d1-eb1dd95df9ee)
+![Screenshot (99)](https://github.com/user-attachments/assets/2b43f01b-9d46-4f31-b7b6-6d91229e363c)
+![Screenshot (100)](https://github.com/user-attachments/assets/5f6694e5-773b-42dc-895d-ecac4a710a39)
+![Screenshot (101)](https://github.com/user-attachments/assets/d60858af-fc1b-4f6c-a25c-96408dd10cb4)
+![Screenshot (102)](https://github.com/user-attachments/assets/a610b3bf-408d-480f-8b77-c91988861778)
+![Screenshot (103)](https://github.com/user-attachments/assets/a9f62c26-9111-4857-8d49-79852ef01004)
 
 
 <details>
-  <summary>Supported crops
+  <summary>Supported Crops For Disease Detection
 </summary>
 
 - Apple
@@ -42,6 +49,45 @@ crop prediction, fertilizer recommendation and disease detection
 - Tomato
 - Squash
 - Raspberry
+</details>
+
+<details>
+  <summary>Supported crops
+</summary>
+
+-'rice'
+-'wheat'
+-'mungbean'
+-'tea'
+-'millet'
+-'maize'
+-'lentil'
+-'jute'
+-'coffee'
+-'cotton'
+-'groundnut'
+-'peas'
+-'rubber'
+-'sugarcane',
+-'kidneybeans'
+-'mothbeans'
+-'coconut'
+-'blackgram'
+-'adzukibeans'
+-'pigeonpeas'
+-'chickpea'
+-'banana'
+-'grapes'
+-'apple'
+-'mango'
+-'muskmelon'
+-'orange'
+-'papaya'
+-'pomegranate'
+-'watermelon'
+</details>
+
+<details>1842 Crops For Fertilizer Detection
 </details>
 
 ## License 📝
