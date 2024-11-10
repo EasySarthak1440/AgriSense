@@ -18,7 +18,10 @@ crop prediction, fertilizer recommendation and disease detection
 - [Disease detection dataset](https://www.kaggle.com/vipoooool/new-plant-diseases-dataset)
 
 ## Website Demo 
-![Screenshot (104)](https://github.com/user-attachments/assets/4438575e-ef4b-4bb8-8f5a-73606424d23e)
+![Screenshot (104)](https://github.com/user-attachments/assets/8eedcbca-2068-4d53-9591-84c6b34cafbc)
+![Screenshot (94)](https://github.com/user-attachments/assets/aa6f3298-a18c-4507-b684-dfd3dc6fea20)
+![Screenshot (95)](https://github.com/user-attachments/assets/c86cbefc-9eaf-4e16-acf3-632b6554cc25)
+
 
 
 <details>
