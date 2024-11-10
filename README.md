@@ -52,10 +52,9 @@ crop prediction, fertilizer recommendation and disease detection
 </details>
 
 <details>
-  <summary>Supported crops
+  <summary>Supported Crops For Crop Prediction
 </summary>
   
-This application supports the following crops for analysis:
 
 - Rice
 - Wheat
