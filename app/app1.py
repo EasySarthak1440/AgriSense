@@ -216,7 +216,8 @@ def login():
         password = request.form.get('password')
         user = User.query.filter_by(email=email).first()
         if user and bcrypt.check_password_hash(user.password, password):
-            login_user(user)
+            login_user(user, remember=True)
+            print(f"User {email} logged in successfully. Authenticated: {current_user.is_authenticated}")
             next_page = request.args.get('next')
             return redirect(next_page) if next_page else redirect(url_for('home'))
         else:
@@ -233,6 +234,7 @@ def logout():
 
 @ app1.route('/')
 def home():
+    print(f"Home page access. User authenticated: {current_user.is_authenticated}")
     title = 'Harvestify - Home'
     return render_template('index.html', title=title)
 
