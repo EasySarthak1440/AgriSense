@@ -12,3 +12,4 @@ pillow
 joblib
 gunicorn
 markupsafe
+scikit-learn
