@@ -1,6 +1,6 @@
 
 from googletrans import Translator
-from flask import Flask, render_template, request, Markup, redirect
+from flask import Flask, render_template, request, Markup, redirect, url_for, flash
 import numpy as np
 import pandas as pd
 from utils.disease import disease_dic
@@ -13,6 +13,12 @@ import torch
 from torchvision import transforms
 from PIL import Image
 from utils.model import ResNet9
+
+# Authentication imports
+from flask_sqlalchemy import SQLAlchemy
+from flask_login import LoginManager, UserMixin, login_user, login_required, logout_user, current_user
+from flask_bcrypt import Bcrypt
+
 translator = Translator()
 
 
@@ -117,6 +123,61 @@ def predict_image(img, model=disease_model):
 
 
 app1 = Flask(__name__)
+app1.config['SECRET_KEY'] = config.SECRET_KEY
+app1.config['SQLALCHEMY_DATABASE_URI'] = config.SQLALCHEMY_DATABASE_URI
+
+db = SQLAlchemy(app1)
+bcrypt = Bcrypt(app1)
+login_manager = LoginManager(app1)
+login_manager.login_view = 'login'
+
+class User(db.Model, UserMixin):
+    id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String(100), nullable=False)
+    email = db.Column(db.String(120), unique=True, nullable=False)
+    password = db.Column(db.String(60), nullable=False)
+
+@login_manager.user_loader
+def load_user(user_id):
+    return User.query.get(int(user_id))
+
+# Auth Routes
+@app1.route('/signup', methods=['GET', 'POST'])
+def signup():
+    if current_user.is_authenticated:
+        return redirect(url_for('home'))
+    if request.method == 'POST':
+        name = request.form.get('name')
+        email = request.form.get('email')
+        password = request.form.get('password')
+        hashed_password = bcrypt.generate_password_hash(password).decode('utf-8')
+        user = User(name=name, email=email, password=hashed_password)
+        db.session.add(user)
+        db.session.commit()
+        flash('Your account has been created! You are now able to log in', 'success')
+        return redirect(url_for('login'))
+    return render_template('signup.html', title='Sign Up')
+
+@app1.route('/login', methods=['GET', 'POST'])
+def login():
+    if current_user.is_authenticated:
+        return redirect(url_for('home'))
+    if request.method == 'POST':
+        email = request.form.get('email')
+        password = request.form.get('password')
+        user = User.query.filter_by(email=email).first()
+        if user and bcrypt.check_password_hash(user.password, password):
+            login_user(user)
+            next_page = request.args.get('next')
+            return redirect(next_page) if next_page else redirect(url_for('home'))
+        else:
+            flash('Login Unsuccessful. Please check email and password', 'danger')
+    return render_template('login.html', title='Login')
+
+@app1.route('/logout')
+def logout():
+    logout_user()
+    return redirect(url_for('home'))
 
 # render home page
 
@@ -130,6 +191,7 @@ def home():
 
 
 @ app1.route('/crop-recommend')
+@login_required
 def crop_recommend():
     title = 'Harvestify - Crop Recommendation'
     return render_template('crop.html', title=title)
@@ -138,12 +200,14 @@ def crop_recommend():
 
 
 @ app1.route('/fertilizer')
+@login_required
 def fertilizer_recommendation():
     title = 'Harvestify - Fertilizer Suggestion'
 
     return render_template('fertilizer.html', title=title)
 
 @ app1.route('/crop-predict', methods=['POST'])
+@login_required
 def crop_prediction():
     title = 'Harvestify - Crop Recommendation'
 
@@ -177,6 +241,7 @@ import pandas as pd
 # Import fertilizer dictionary
 from utils.fertilizer import fertilizer_dic
 @ app1.route('/fertilizer-predict', methods=['POST'])
+@login_required
 def fert_recommend():
     title = 'Harvestify - Fertilizer Suggestion'
 
@@ -235,6 +300,7 @@ def translate_text(text, target_language):
 from utils.disease import disease_dic
 
 @app1.route('/disease-predict', methods=['GET', 'POST'])
+@login_required
 def disease_prediction():
     title = 'Harvestify - Disease Detection'
     language = request.form.get("language")
@@ -259,4 +325,6 @@ def disease_prediction():
 
 # ===============================================================================================
 if __name__ == '__main__':
+    with app1.app_context():
+        db.create_all()
     app1.run(debug=False)
