@@ -175,21 +175,36 @@ class User(db.Model, UserMixin):
 def load_user(user_id):
     return User.query.get(int(user_id))
 
+with app1.app_context():
+    db.create_all()
+
 # Auth Routes
 @app1.route('/signup', methods=['GET', 'POST'])
 def signup():
     if current_user.is_authenticated:
         return redirect(url_for('home'))
     if request.method == 'POST':
-        name = request.form.get('name')
-        email = request.form.get('email')
-        password = request.form.get('password')
-        hashed_password = bcrypt.generate_password_hash(password).decode('utf-8')
-        user = User(name=name, email=email, password=hashed_password)
-        db.session.add(user)
-        db.session.commit()
-        flash('Your account has been created! You are now able to log in', 'success')
-        return redirect(url_for('login'))
+        try:
+            name = request.form.get('name')
+            email = request.form.get('email')
+            password = request.form.get('password')
+            
+            # Check if user already exists
+            user_exists = User.query.filter_by(email=email).first()
+            if user_exists:
+                flash('Email address already exists', 'danger')
+                return redirect(url_for('signup'))
+                
+            hashed_password = bcrypt.generate_password_hash(password).decode('utf-8')
+            user = User(name=name, email=email, password=hashed_password)
+            db.session.add(user)
+            db.session.commit()
+            flash('Your account has been created! You are now able to log in', 'success')
+            return redirect(url_for('login'))
+        except Exception as e:
+            print(f"Error during signup: {e}")
+            flash('An error occurred during signup. Please try again.', 'danger')
+            return redirect(url_for('signup'))
     return render_template('signup.html', title='Sign Up')
 
 @app1.route('/login', methods=['GET', 'POST'])
@@ -359,6 +374,4 @@ def disease_prediction():
 
 # ===============================================================================================
 if __name__ == '__main__':
-    with app1.app_context():
-        db.create_all()
     app1.run(debug=False)
