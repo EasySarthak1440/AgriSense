@@ -1,6 +1,7 @@
 
 from googletrans import Translator
-from flask import Flask, render_template, request, Markup, redirect, url_for, flash
+from flask import Flask, render_template, request, redirect, url_for, flash
+from markupsafe import Markup
 import numpy as np
 import pandas as pd
 from utils.disease import disease_dic

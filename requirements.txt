@@ -11,3 +11,4 @@ torchvision
 pillow
 joblib
 gunicorn
+markupsafe
