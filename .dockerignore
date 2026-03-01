@@ -1,0 +1,16 @@
+.git
+__pycache__
+*.pyc
+*.pyo
+*.pyd
+.Python
+env/
+venv/
+bin/
+lib/
+include/
+pip-selfcheck.json
+Data-raw/
+Data-processed/
+notebooks/
+.ipynb_checkpoints/
