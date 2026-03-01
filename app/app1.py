@@ -67,7 +67,35 @@ import os
 # Get absolute path to the directory this file is in
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 
-disease_model_path = os.path.join(BASE_DIR, 'models/plant_disease_model.pth')
+def find_model(model_path_relative):
+    """
+    Tries to find a model file in several possible locations.
+    :param model_path_relative: path like 'models/plant_disease_model.pth'
+    :return: Absolute path to the model if found, else original relative path
+    """
+    # 1. Check relative to current file (app/models/...)
+    path1 = os.path.join(BASE_DIR, model_path_relative)
+    if os.path.exists(path1):
+        return path1
+    
+    # 2. Check relative to root (models/...)
+    path2 = os.path.join(os.path.dirname(BASE_DIR), model_path_relative)
+    if os.path.exists(path2):
+        return path2
+    
+    # 3. Check absolute paths for Hugging Face container
+    path3 = os.path.join('/app', model_path_relative)
+    if os.path.exists(path3):
+        return path3
+    
+    path4 = os.path.join('/app/app', model_path_relative)
+    if os.path.exists(path4):
+        return path4
+        
+    # Default fallback
+    return path1
+
+disease_model_path = find_model('models/plant_disease_model.pth')
 disease_model = ResNet9(3, len(disease_classes))
 disease_model.load_state_dict(torch.load(
     disease_model_path, map_location=torch.device('cpu')))
@@ -76,7 +104,7 @@ disease_model.eval()
 
 from joblib import load
 
-crop_recommendation_model = load(os.path.join(BASE_DIR, 'models/RF.joblib'))
+crop_recommendation_model = load(find_model('models/RF.joblib'))
 
 
 def weather_fetch(city_name):
