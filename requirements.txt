@@ -2,7 +2,7 @@ flask
 flask-sqlalchemy
 flask-login
 flask-bcrypt
-numpy
+numpy<2.0.0
 pandas
 requests
 googletrans==4.0.0rc1
