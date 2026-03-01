@@ -236,7 +236,7 @@ def crop_prediction():
 
 # render fertilizer recommendation result page
 
-from flask import Markup
+from markupsafe import Markup
 import pandas as pd
 
 # Import fertilizer dictionary
