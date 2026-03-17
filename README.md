@@ -14,11 +14,6 @@ crop prediction, fertilizer recommendation and disease detection
 
 #### A simple ML and DL based website which recommends the best crop to grow, fertilizers to use and the diseases caught by your crops.
 
-## NEW FEATURE: AUTHENTICATION 🔐
-- **Secure Access:** Only registered users can access the core recommendation features.
-- **User Profiles:** Stores user information like Name and Email ID for a personalized experience.
-- **Safe Storage:** Password hashing and session management using Flask-Login and Bcrypt.
-
 ## MOTIVATION 💪
 - Farming is one of the major sectors that influences a country’s economic growth. 
 
