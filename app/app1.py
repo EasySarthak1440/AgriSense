@@ -102,26 +102,41 @@ from joblib import load
 crop_recommendation_model = load(find_model('models/RF.joblib'))
 
 
-def weather_fetch(city_name):
+def weather_fetch(city_name, state_name=None):
     """
     Fetch and returns the temperature and humidity of a city
-    :params: city_name
+    :params: city_name, state_name
     :return: temperature, humidity
     """
     api_key = config.weather_api_key
     base_url = "http://api.openweathermap.org/data/2.5/weather?"
 
-    complete_url = base_url + "appid=" + api_key + "&q=" + city_name
-    response = requests.get(complete_url)
-    x = response.json()
+    def get_weather(query):
+        # Clean up query: replace & with and, and common state name adjustments
+        query = query.replace(" & ", " and ")
+        if "Andaman and Nicobar" in query and "Islands" not in query:
+            query = query.replace("Andaman and Nicobar", "Andaman and Nicobar Islands")
+        
+        complete_url = base_url + "appid=" + api_key + "&q=" + query.strip()
+        response = requests.get(complete_url)
+        return response.json()
 
-    if x["cod"] != "404":
+    # Try 1: Exact city name in India
+    city_name = city_name.strip()
+    x = get_weather(f"{city_name},IN")
+    
+    # Try 2: If city fails and state is provided, try state
+    if (x["cod"] != 200 and x["cod"] != "200") and state_name:
+        print(f"City '{city_name}' not found, falling back to state '{state_name}'")
+        x = get_weather(f"{state_name.strip()},IN")
+
+    if x["cod"] == 200 or x["cod"] == "200":
         y = x["main"]
-
         temperature = round((y["temp"] - 273.15), 2)
         humidity = y["humidity"]
         return temperature, humidity
     else:
+        print(f"Failed to fetch weather data for {city_name}/{state_name}: {x.get('message', 'Unknown error')}")
         return None
 
 
@@ -190,11 +205,13 @@ def crop_prediction():
         ph = float(request.form['ph'])
         rainfall = float(request.form['rainfall'])
 
-        # state = request.form.get("stt")
-        city = request.form.get("city")
+        state = request.form.get("stt")
+        city = request.form.get("city").strip()
         language = request.form.get("language")
-        if weather_fetch(city) != None:
-            temperature, humidity = weather_fetch(city)
+        
+        weather_data = weather_fetch(city, state)
+        if weather_data is not None:
+            temperature, humidity = weather_data
             data = np.array([[N, P, K, temperature, humidity, ph, rainfall]])
             my_prediction = crop_recommendation_model.predict(data)
             final_prediction = my_prediction[0]

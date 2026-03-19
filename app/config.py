@@ -1,2 +1,2 @@
-weather_api_key = "9d7cde1f6d07ec55650544be1631307e"
+weather_api_key = "1bd5937c69cbe33a9a65ddc3c4224900"
 SECRET_KEY = "your_secret_key_here"
