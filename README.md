@@ -38,9 +38,40 @@ crop prediction, fertilizer recommendation and disease detection
 ![Screenshot (102)](https://github.com/user-attachments/assets/a610b3bf-408d-480f-8b77-c91988861778)
 ![Screenshot (103)](https://github.com/user-attachments/assets/a9f62c26-9111-4857-8d49-79852ef01004)
 
+## GETTING STARTED 🛠️
+
+### Prerequisites
+- Python 3.8 or higher
+- Git
+- Docker (for deployment)
+
+### Installation
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/EasySarthak1440/AgriSense.git
+   cd AgriSense
+   ```
+
+2. Create a virtual environment:
+   ```bash
+   python -m venv venv
+   source venv/bin/activate  # On Windows: venv\Scripts\activate
+   ```
+
+3. Install dependencies:
+   ```bash
+   pip install -r requirements.txt
+   ```
+
+### Running Locally
+To run the application locally for development:
+```bash
+# Assuming the app has a main entry point
+python app.py  # or whatever the main file is
+```
 
 <details>
-  <summary>Supported Crops For Disease Detection
+<summary>Supported Crops For Disease Detection
 </summary>
 
 - Apple
